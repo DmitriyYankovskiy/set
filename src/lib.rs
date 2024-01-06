@@ -1,8 +1,6 @@
-use std::ops::{DerefMut, Deref};
+use std::ops::{Deref, DerefMut};
 
-use serde::{Serialize, Deserialize};
-
-
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Set<T: Clone> {
@@ -10,15 +8,14 @@ pub struct Set<T: Clone> {
     count: usize,
 }
 
-impl <T: Clone> Deref for Set<T> {
+impl<T: Clone> Deref for Set<T> {
     type Target = T;
     fn deref(&self) -> &Self::Target {
         &self.object
     }
 }
 
-
-impl<T: Clone> DerefMut for Set<T> {    
+impl<T: Clone> DerefMut for Set<T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         &mut self.object
     }
@@ -26,10 +23,7 @@ impl<T: Clone> DerefMut for Set<T> {
 
 impl<T: Clone> Set<T> {
     pub fn new(object: T, count: usize) -> Set<T> {
-        Set::<T> {
-            object,
-            count
-        }
+        Set::<T> { object, count }
     }
 
     pub fn open(&self) -> Vec<T> {
