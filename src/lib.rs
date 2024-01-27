@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Set<T: Clone> {
+    #[serde(flatten)]
     object: T,
     count: usize,
 }
